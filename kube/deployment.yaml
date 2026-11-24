@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+  namespace: practica2026
+spec:
+  # TODO 1: definir el número de réplicas (3)
+  selector:
+    matchLabels:
+      app: demoapp
+  template:
+    metadata:
+      labels:
+        app: demoapp
+    spec:
+      # TODO 2: no montar el token de la cuenta de servicio
+      containers:
+        - name: demoapp
+          image: tuxotron/demoapp:v1
+          ports:
+            - containerPort: 8080
+              name: http
+          # TODO 3: añadir readinessProbe y livenessProbe (HTTP GET / en el puerto 8080)
+          # TODO 4: añadir el securityContext necesario para cumplir el perfil "restricted"
